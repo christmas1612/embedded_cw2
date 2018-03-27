@@ -41,7 +41,7 @@ typedef enum{
     VELOCITY,  
     POSITION,  
     SPEED,   
-    ERROR
+    ERROR_M
 } output_t;
     
 
@@ -228,7 +228,7 @@ void decCmdFn(){
         
         // if the current index is past the length of the buffer print a message
         if(char_idx == COMMAND_LENGTH)
-            putMessage(ERROR, 0);
+            putMessage(ERROR_M, 0);
         // if the new character is the end of the line command
         if(newCmd[char_idx-1] == '\r'){
             newCmd[char_idx] = '\0';   // add the termination character at the end
@@ -255,7 +255,7 @@ void decCmdFn(){
                     if(Target_Vel > 20){    // if the target velocity is large enough
                         kps = 20.3;
                         kpr = 26.7;
-                        kd = 18.96;
+                        kd = 19.5;
                     }else{          // otherwise for small velocities change the parameters
                         kps = 5; 
                         kpr = 15; 
@@ -321,7 +321,7 @@ void commOutFn(){
                 msg_m = 0;
                 msg_exists = false;
             }
-        }else if(pMessage->code == ERROR){
+        }else if(pMessage->code == ERROR_M){
             pc.printf("Input Command Exceeds the preset Command Length\n\r");
         }else{
             pc.printf("Message %d with data %d\n\r",
