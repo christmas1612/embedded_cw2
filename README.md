@@ -1,1 +1,1 @@
-# embedded_cw2
+# embedded_cw2 - In Chris We Trust
